@@ -4,14 +4,17 @@
 #
 Name     : R-config
 Version  : 0.3
-Release  : 3
+Release  : 4
 URL      : https://cran.r-project.org/src/contrib/config_0.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/config_0.3.tar.gz
 Summary  : Manage Environment Specific Configuration Values
 Group    : Development/Tools
 License  : GPL-3.0
-Requires: R-rlang
+Requires: R-markdown
+Requires: R-yaml
+BuildRequires : R-markdown
 BuildRequires : R-rlang
+BuildRequires : R-yaml
 BuildRequires : buildreq-R
 
 %description
@@ -26,10 +29,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541772950
+export SOURCE_DATE_EPOCH=1552730435
 
 %install
-export SOURCE_DATE_EPOCH=1541772950
+export SOURCE_DATE_EPOCH=1552730435
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -65,8 +68,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library config|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  config || :
 
 
 %files
@@ -96,3 +98,16 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/config/help/paths.rds
 /usr/lib64/R/library/config/html/00Index.html
 /usr/lib64/R/library/config/html/R.css
+/usr/lib64/R/library/config/tests/testthat.R
+/usr/lib64/R/library/config/tests/testthat/config-inheritself.yml
+/usr/lib64/R/library/config/tests/testthat/config-multiple.yml
+/usr/lib64/R/library/config/tests/testthat/config.yml
+/usr/lib64/R/library/config/tests/testthat/config/conf.yml
+/usr/lib64/R/library/config/tests/testthat/config/config.yml
+/usr/lib64/R/library/config/tests/testthat/errors/nodefault.yml
+/usr/lib64/R/library/config/tests/testthat/parent/config.yaml
+/usr/lib64/R/library/config/tests/testthat/test-active.R
+/usr/lib64/R/library/config/tests/testthat/test-errors.R
+/usr/lib64/R/library/config/tests/testthat/test-inherit.R
+/usr/lib64/R/library/config/tests/testthat/test-parent.R
+/usr/lib64/R/library/config/tests/testthat/test-read.R
