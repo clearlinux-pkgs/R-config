@@ -4,18 +4,18 @@
 #
 Name     : R-config
 Version  : 0.3
-Release  : 10
+Release  : 11
 URL      : https://cran.r-project.org/src/contrib/config_0.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/config_0.3.tar.gz
 Summary  : Manage Environment Specific Configuration Values
 Group    : Development/Tools
 License  : GPL-3.0
-Requires: R-markdown
 Requires: R-yaml
 BuildRequires : R-markdown
 BuildRequires : R-rlang
 BuildRequires : R-yaml
 BuildRequires : buildreq-R
+BuildRequires : util-linux
 
 %description
 development, test, production). Read values using a function that determines
@@ -28,13 +28,13 @@ development, test, production). Read values using a function that determines
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552730435
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1571812667
 
 %install
-export SOURCE_DATE_EPOCH=1552730435
+export SOURCE_DATE_EPOCH=1571812667
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -63,12 +63,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  config || :
+R CMD check --no-manual --no-examples --no-codoc config || :
 
 
 %files
