@@ -5,7 +5,7 @@
 #
 Name     : R-config
 Version  : 0.3.2
-Release  : 38
+Release  : 39
 URL      : https://cran.r-project.org/src/contrib/config_0.3.2.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/config_0.3.2.tar.gz
 Summary  : Manage Environment Specific Configuration Values
